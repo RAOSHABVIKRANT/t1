@@ -1,0 +1,16 @@
+{
+  "name": "lan-tic-tac-toe",
+  "version": "1.0.0",
+  "description": "A real-time two-player Tic Tac Toe game to host on your local network.",
+  "main": "server.js",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "ws": "^8.18.0"
+  }
+}
