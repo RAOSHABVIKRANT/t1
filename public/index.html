@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+<title>Tic Tac Toe · LAN</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="bg-orbs">
+  <span class="orb orb-1"></span>
+  <span class="orb orb-2"></span>
+  <span class="orb orb-3"></span>
+</div>
+
+<!-- LOBBY -->
+<main id="lobby" class="screen">
+  <div class="card lobby-card">
+    <h1 class="title">Tic <span>Tac</span> Toe</h1>
+    <p class="subtitle">Play with a friend on the same Wi‑Fi</p>
+
+    <div class="lobby-actions">
+      <button id="createBtn" class="btn btn-primary">Host a new game</button>
+
+      <div class="divider"><span>or</span></div>
+
+      <form id="joinForm" class="join-form">
+        <input id="roomInput" type="text" maxlength="4" placeholder="ROOM CODE" autocomplete="off" />
+        <button type="submit" class="btn btn-secondary">Join</button>
+      </form>
+    </div>
+
+    <p id="lobbyStatus" class="lobby-status"></p>
+  </div>
+</main>
+
+<!-- SHARE SCREEN (host waiting for opponent) -->
+<main id="share" class="screen hidden">
+  <div class="card share-card">
+    <p class="eyebrow">Room code</p>
+    <div class="room-code" id="roomCodeDisplay">----</div>
+    <p class="share-hint">Ask the other player to open this app on the same network and enter the code — or share the link below.</p>
+    <div class="link-row">
+      <input id="shareLink" type="text" readonly />
+      <button id="copyBtn" class="btn btn-small">Copy</button>
+    </div>
+    <div class="waiting">
+      <span class="pulse-dot"></span> Waiting for opponent to join…
+    </div>
+    <button id="backFromShare" class="btn btn-ghost">Cancel</button>
+  </div>
+</main>
+
+<!-- GAME -->
+<main id="game" class="screen hidden">
+  <div class="card game-card">
+    <header class="game-header">
+      <div class="room-pill">Room <strong id="gameRoomCode">----</strong></div>
+      <div class="conn-status" id="connStatus">
+        <span class="dot"></span> <span id="connText">Connected</span>
+      </div>
+    </header>
+
+    <div class="players-row">
+      <div class="player-badge me" id="badgeX">
+        <span class="mark">✕</span>
+        <span class="p-label">Player X</span>
+      </div>
+      <div class="vs">VS</div>
+      <div class="player-badge" id="badgeO">
+        <span class="mark">◯</span>
+        <span class="p-label">Player O</span>
+      </div>
+    </div>
+
+    <div id="turnBanner" class="turn-banner">Your turn</div>
+
+    <div id="board" class="board">
+      <button class="cell" data-idx="0"></button>
+      <button class="cell" data-idx="1"></button>
+      <button class="cell" data-idx="2"></button>
+      <button class="cell" data-idx="3"></button>
+      <button class="cell" data-idx="4"></button>
+      <button class="cell" data-idx="5"></button>
+      <button class="cell" data-idx="6"></button>
+      <button class="cell" data-idx="7"></button>
+      <button class="cell" data-idx="8"></button>
+      <svg class="win-line" viewBox="0 0 300 300" width="300" height="300"></svg>
+    </div>
+
+    <div class="scoreboard">
+      <div class="score-item">
+        <span class="score-label">X</span>
+        <span class="score-value" id="scoreX">0</span>
+      </div>
+      <div class="score-item">
+        <span class="score-label">Draws</span>
+        <span class="score-value" id="scoreDraw">0</span>
+      </div>
+      <div class="score-item">
+        <span class="score-label">O</span>
+        <span class="score-value" id="scoreO">0</span>
+      </div>
+    </div>
+
+    <button id="restartBtn" class="btn btn-primary restart-btn">Rematch</button>
+    <button id="leaveBtn" class="btn btn-ghost">Leave room</button>
+  </div>
+</main>
+
+<!-- Winner overlay -->
+<div id="overlay" class="overlay hidden">
+  <div class="overlay-card">
+    <div class="overlay-icon" id="overlayIcon">🎉</div>
+    <h2 id="overlayTitle">You win!</h2>
+    <p id="overlaySub">Nice moves.</p>
+    <button id="overlayRestart" class="btn btn-primary">Play again</button>
+  </div>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
